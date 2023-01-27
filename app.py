@@ -22,11 +22,13 @@ import random
 import base64
 import requests
 
-db = SQLAlchemy()
 app = flask.Flask(__name__)
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 app.config["SECRET_KEY"] = "testing"
 MAP_API_KEY=os.getenv('MAP_API_KEY')
+
+with app.app_context():
+    init_db()
 
 # app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL").replace(
 #     "://", "ql://", 1
