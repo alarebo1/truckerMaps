@@ -25,16 +25,15 @@ import requests
 app = flask.Flask(__name__)
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 app.config["SECRET_KEY"] = "testing"
-MAP_API_KEY=os.getenv('MAP_API_KEY')
 
-with app.app_context():
 
-    # app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL").replace(
-    #     "://", "ql://", 1
-    # )
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
-    db = SQLAlchemy(app)
+db = SQLAlchemy(app)
+
+# app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL").replace(
+#     "://", "ql://", 1
+# )
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 
 login_manager = LoginManager()
 login_manager.init_app(app)
